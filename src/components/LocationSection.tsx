@@ -5,7 +5,6 @@ import { MapFacade } from './MapFacade';
 
 export function LocationSection() {
   const address = "Avda. Jane Bowles 17, Málaga, España";
-  const mapUrl = `https://maps.google.com/maps?q=Avda+Jane+Bowles+17+Málaga+España&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (
     <section className="px-2 sm:px-6">

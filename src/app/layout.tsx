@@ -14,12 +14,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://psicostimulos.es'),
-  title: "Stímulos - Centro de Psicología",
-  description: "Centro de psicología especializado en estimulación cognitiva y bienestar mental. Servicios profesionales de psicología en Málaga.",
-  icons: {
-    icon: "/Stimulo.png",
-    shortcut: "/Stimulo.png",
-    apple: "/Stimulo.png",
+  title: "Stímulos Centro Infantil | Psicología y Apoyo al Desarrollo en Málaga",
+  description: "Centro especializado en psicología infantil, neuropsicología, logopedia y psicopedagogía en Málaga. Atención personalizada para el desarrollo y bienestar de cada niño.",
+  openGraph: {
+    title: "Stímulos Centro Infantil | Psicología en Málaga",
+    description: "Centro especializado en psicología infantil, neuropsicología, logopedia y psicopedagogía en Málaga.",
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Stímulos Centro Infantil | Psicología en Málaga",
+    description: "Centro especializado en psicología infantil, neuropsicología, logopedia y psicopedagogía en Málaga.",
   },
 };
 

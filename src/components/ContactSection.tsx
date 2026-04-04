@@ -32,7 +32,6 @@ export function ContactSection() {
     setSubmitStatus('idle');
     setSubmitError(null);
 
-    // Preparamos los datos para la Server Action
     const data = new FormData();
     data.append('name', formData.name);
     data.append('email', formData.email);
@@ -48,20 +47,19 @@ export function ContactSection() {
     data.append('turnstileToken', token);
 
     try {
-      const result = await sendEmail(data); // <--- Llamada a Resend
+      const result = await sendEmail(data);
 
       if (result.success) {
         setSubmitStatus('success');
         setSubmitError(null);
         setAcceptPrivacy(false);
         setToken(null);
-        // Ocultar mensaje de éxito tras 5 segundos
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
         setSubmitStatus('error');
         setSubmitError(result.error ? String(result.error) : 'Error al enviar. Inténtalo de nuevo.');
       }
-    } catch (err) {
+    } catch {
       setSubmitStatus('error');
       setSubmitError('Error al enviar. Inténtalo de nuevo.');
     } finally {

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 const mapUrl = `https://maps.google.com/maps?q=Avda+Jane+Bowles+17+Málaga+España&t=&z=15&ie=UTF8&iwloc=&output=embed`;
-const staticMapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=Avda+Jane+Bowles+17,Málaga,España&zoom=15&size=800x400&markers=color:red%7CAvda+Jane+Bowles+17,Málaga,España&style=feature:all|saturation:-20&key=`;
 
 export function MapFacade() {
     const [loaded, setLoaded] = useState(false);
