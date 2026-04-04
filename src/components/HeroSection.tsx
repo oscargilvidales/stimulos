@@ -9,6 +9,8 @@ export function HeroSection() {
             src="/Stimulo.png"
             alt="Stimulos Logo"
             fill
+            priority
+            sizes="(max-width: 640px) 96px, 128px"
             className="object-contain"
           />
         </div>

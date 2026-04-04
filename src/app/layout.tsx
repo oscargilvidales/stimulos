@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://psicostimulos.es'),
   title: "Stímulos - Centro de Psicología",
   description: "Centro de psicología especializado en estimulación cognitiva y bienestar mental. Servicios profesionales de psicología en Málaga.",
   icons: {

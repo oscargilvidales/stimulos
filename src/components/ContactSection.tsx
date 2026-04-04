@@ -21,12 +21,12 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!acceptPrivacy) {
       alert('Debes aceptar la Política de Privacidad para enviar el formulario.');
       return;
     }
-    
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setSubmitError(null);
@@ -79,7 +79,7 @@ export function ContactSection() {
     <section className="px-2 sm:px-6">
       <div className="max-w-6xl mx-auto bg-gradient-to-b from-[#FFA3C7] to-[#FF8FB3] rounded-[2rem] sm:rounded-[3rem] shadow-xl py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-start">
-          
+
           {/* Info de Contacto */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -90,10 +90,10 @@ export function ContactSection() {
             <p className="text-white/90 mb-8 leading-relaxed">
               ¿Tienes alguna pregunta? Estaremos encantados de atenderte en Psicostímulos.
             </p>
-            
+
             <div className="space-y-4">
               {/* Teléfono */}
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-4 p-4 bg-white/20 rounded-2xl backdrop-blur-sm"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
@@ -104,7 +104,7 @@ export function ContactSection() {
                 <a href="tel:+34644648546" className="text-white font-medium">+34 644 648 546</a>
               </motion.div>
               {/* Email */}
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-4 p-4 bg-white/20 rounded-2xl backdrop-blur-sm"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
@@ -114,14 +114,14 @@ export function ContactSection() {
                 </div>
                 <a href="mailto:psicostimulos@gmail.com" className="text-white font-medium">psicostimulos@gmail.com</a>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-start gap-3 sm:gap-4 rounded-xl sm:rounded-2xl p-4 sm:p-5 bg-white/20 backdrop-blur-sm"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
                 <div className="bg-white rounded-full p-2 sm:p-3 shadow-lg flex-shrink-0">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#FF8FB3]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                   </svg>
                 </div>
                 <div>
@@ -142,7 +142,7 @@ export function ContactSection() {
             className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8"
           >
             <h3 className="text-2xl text-[#8B4789] mb-6">Envíanos un mensaje</h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
@@ -196,7 +196,7 @@ export function ContactSection() {
 
               <div className="flex justify-center my-4">
                 <Turnstile
-                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || (process.env.NODE_ENV === 'development' ? '1x00000000000000000000AA' : '')}
                   onSuccess={(token) => setToken(token)}
                 />
               </div>
@@ -206,7 +206,7 @@ export function ContactSection() {
                   ¡Mensaje enviado correctamente!
                 </div>
               )}
-              
+
               {submitStatus === 'error' && submitError && (
                 <div className="p-3 bg-red-100 text-red-700 rounded-xl text-sm">
                   {submitError}
