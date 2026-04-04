@@ -8,7 +8,6 @@ async function verifyTurnstile(token: string | null) {
   if (!token) return false;
   const secret = process.env.TURNSTILE_SECRET_KEY;
   if (!secret) {
-    console.error('TURNSTILE_SECRET_KEY no está configurada.');
     return false;
   }
 
@@ -21,8 +20,7 @@ async function verifyTurnstile(token: string | null) {
 
     const data = await response.json();
     return data.success === true;
-  } catch (error) {
-    console.error('Error verificando Turnstile:', error);
+  } catch {
     return false;
   }
 }
@@ -44,7 +42,6 @@ export async function sendEmail(formData: FormData) {
 
   const validCaptcha = await verifyTurnstile(turnstileToken?.toString() ?? null);
   if (!validCaptcha) {
-    console.error('Captcha inválido o no verificado.');
     return { success: false, error: 'Captcha inválido o no verificado.' };
   }
 
@@ -63,8 +60,7 @@ export async function sendEmail(formData: FormData) {
     });
 
     return { success: true };
-  } catch (error) {
-    console.error("Error enviando mail:", error);
+  } catch {
     return { success: false };
   }
 }

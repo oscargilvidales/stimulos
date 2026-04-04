@@ -144,41 +144,57 @@ export function ContactSection() {
             <h3 className="text-2xl text-[#8B4789] mb-6">Envíanos un mensaje</h3>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Nombre completo *"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none text-black"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Correo electrónico *"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none text-black"
-                required
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Teléfono"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none text-black"
-              />
-              <textarea
-                name="message"
-                placeholder="¿En qué podemos ayudarte? *"
-                value={formData.message}
-                onChange={handleChange}
-                rows={4}
-                className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none resize-none text-black"
-                required
-              />
+              <div className="flex flex-col gap-1">
+                <label htmlFor="name" className="sr-only">Nombre completo</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Nombre completo *"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none text-black"
+                  required
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="email" className="sr-only">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Correo electrónico *"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none text-black"
+                  required
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="phone" className="sr-only">Teléfono</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="Teléfono"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none text-black"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="message" className="sr-only">Mensaje</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="¿En qué podemos ayudarte? *"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none resize-none text-black"
+                  required
+                />
+              </div>
 
               <div className="flex items-start gap-3">
                 <input
@@ -216,6 +232,7 @@ export function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting || !token}
+                aria-label="Enviar formulario de contacto"
                 className="w-full bg-[#FFC629] hover:bg-[#FFD84D] text-gray-900 font-bold py-4 rounded-xl transition-all disabled:opacity-50 flex justify-center items-center gap-2"
               >
                 {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}

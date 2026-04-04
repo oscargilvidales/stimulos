@@ -6,27 +6,28 @@ export function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div className="w-16 sm:w-20 h-16 sm:h-20 relative">
-            <Image 
-              src="/Stimulo.png" 
-              alt="Stimulos Logo" 
+            <Image
+              src="/Stimulo.png"
+              alt="Logo de Stímulos Centro Infantil"
               fill
+              sizes="(max-width: 640px) 64px, 80px"
               className="object-contain"
             />
           </div>
         </div>
-        
+
         <p className="text-center text-gray-700 italic max-w-2xl text-sm sm:text-base leading-relaxed px-2 font-medium">
           &ldquo;Cada rincón de nuestro espacio ha sido diseñado con un objetivo claro: inspirar, educar y apoyar&rdquo;.
         </p>
-        
-        <Link 
-          href="/politica-privacidad" 
+
+        <Link
+          href="/politica-privacidad"
           className="text-[#8B4789] hover:text-[#6B3669] hover:underline font-semibold transition-colors text-sm sm:text-base"
         >
           Política de Privacidad
         </Link>
       </div>
-      
+
       <div className="max-w-6xl mx-auto mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-400 text-center">
         <p className="text-gray-600 text-xs sm:text-sm font-medium">
           © 2026 STIMULOS Centro Infantil. Todos los derechos reservados.
