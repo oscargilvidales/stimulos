@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,17 +15,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://psicostimulos.es'),
-  title: "Stímulos Centro Infantil | Psicología y Apoyo al Desarrollo en Málaga",
+  title: "Psicostímulos | Centro de Psicología y Logopedia",
   description: "Centro especializado en psicología infantil, neuropsicología, logopedia y psicopedagogía en Málaga. Atención personalizada para el desarrollo y bienestar de cada niño.",
   openGraph: {
-    title: "Stímulos Centro Infantil | Psicología en Málaga",
+    title: "Psicostímulos | Centro de Psicología y Logopedia en Málaga",
     description: "Centro especializado en psicología infantil, neuropsicología, logopedia y psicopedagogía en Málaga.",
     locale: "es_ES",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Stímulos Centro Infantil | Psicología en Málaga",
+    title: "Psicostímulos | Centro de Psicología y Logopedia en Málaga",
     description: "Centro especializado en psicología infantil, neuropsicología, logopedia y psicopedagogía en Málaga.",
   },
 };
@@ -39,7 +40,10 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
