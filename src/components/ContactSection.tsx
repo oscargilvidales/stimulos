@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Turnstile } from '@marsidev/react-turnstile';
 import { sendEmail } from '@/app/actions';
 
 export function ContactSection() {
@@ -11,6 +12,7 @@ export function ContactSection() {
     phone: '',
     message: ''
   });
+  const [token, setToken] = useState<string | null>(null);
 
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,6 +36,14 @@ export function ContactSection() {
     data.append('phone', formData.phone);
     data.append('message', formData.message);
 
+    if (!token) {
+      alert('Por favor, completa el captcha antes de enviar el formulario.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    data.append('turnstileToken', token);
+
     try {
       const result = await sendEmail(data); // <--- Llamada a Resend
 
@@ -41,6 +51,7 @@ export function ContactSection() {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', phone: '', message: '' });
         setAcceptPrivacy(false);
+        setToken(null);
         // Ocultar mensaje de éxito tras 5 segundos
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
@@ -186,6 +197,13 @@ export function ContactSection() {
                 </p>
               </div>
 
+              <div className="flex justify-center my-4">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
+                  onSuccess={(token) => setToken(token)}
+                />
+              </div>
+
               {submitStatus === 'success' && (
                 <div className="p-3 bg-green-100 text-green-700 rounded-xl text-sm">
                   ¡Mensaje enviado correctamente!
@@ -200,7 +218,7 @@ export function ContactSection() {
 
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !token}
                 className="w-full bg-[#FFC629] hover:bg-[#FFD84D] text-gray-900 font-bold py-4 rounded-xl transition-all disabled:opacity-50 flex justify-center items-center gap-2"
               >
                 {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
