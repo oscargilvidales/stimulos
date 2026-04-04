@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { MapFacade } from './MapFacade';
 
 export function LocationSection() {
   const address = "Avda. Jane Bowles 17, Málaga, España";
@@ -56,17 +57,7 @@ export function LocationSection() {
             </a>
           </div>
           <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px]">
-            <iframe
-              src={mapUrl}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Ubicación de STIMULOS Centro Infantil"
-              className="w-full h-full"
-            />
+            <MapFacade />
           </div>
         </motion.div>
 

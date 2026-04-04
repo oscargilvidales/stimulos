@@ -13,6 +13,7 @@ export function ContactSection() {
     message: ''
   });
   const [token, setToken] = useState<string | null>(null);
+  const [showCaptcha, setShowCaptcha] = useState(false);
 
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -153,6 +154,7 @@ export function ContactSection() {
                   placeholder="Nombre completo *"
                   value={formData.name}
                   onChange={handleChange}
+                  onFocus={() => setShowCaptcha(true)}
                   className="w-full p-3 rounded-xl border-2 border-gray-100 focus:border-[#FF8FB3] outline-none text-black"
                   required
                 />
@@ -211,10 +213,15 @@ export function ContactSection() {
               </div>
 
               <div className="flex justify-center my-4">
-                <Turnstile
-                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || (process.env.NODE_ENV === 'development' ? '1x00000000000000000000AA' : '')}
-                  onSuccess={(token) => setToken(token)}
-                />
+                {showCaptcha && (
+                  <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || (process.env.NODE_ENV === 'development' ? '1x00000000000000000000AA' : '')}
+                    onSuccess={(token) => setToken(token)}
+                  />
+                )}
+                {!showCaptcha && (
+                  <div className="h-16 flex items-center text-sm text-gray-400">El captcha se cargará al rellenar el formulario</div>
+                )}
               </div>
 
               {submitStatus === 'success' && (
