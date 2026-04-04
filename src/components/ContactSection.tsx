@@ -17,6 +17,7 @@ export function ContactSection() {
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ export function ContactSection() {
     
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setSubmitError(null);
 
     // Preparamos los datos para la Server Action
     const data = new FormData();
@@ -49,16 +51,18 @@ export function ContactSection() {
 
       if (result.success) {
         setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        setSubmitError(null);
         setAcceptPrivacy(false);
         setToken(null);
         // Ocultar mensaje de éxito tras 5 segundos
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
         setSubmitStatus('error');
+        setSubmitError(result.error ? String(result.error) : 'Error al enviar. Inténtalo de nuevo.');
       }
     } catch (err) {
       setSubmitStatus('error');
+      setSubmitError('Error al enviar. Inténtalo de nuevo.');
     } finally {
       setIsSubmitting(false);
     }
@@ -190,13 +194,6 @@ export function ContactSection() {
                 </label>
               </div>
 
-              {/* Info Message */}
-              <div className="bg-blue-50 border-l-4 border-[#4FB3D9] p-3 sm:p-4 rounded-lg">
-                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                  <strong>Información:</strong> No utilizamos cookies. Los datos que nos proporcionas se utilizan únicamente con fines profesionales para responder a tu consulta.
-                </p>
-              </div>
-
               <div className="flex justify-center my-4">
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
@@ -210,9 +207,9 @@ export function ContactSection() {
                 </div>
               )}
               
-              {submitStatus === 'error' && (
+              {submitStatus === 'error' && submitError && (
                 <div className="p-3 bg-red-100 text-red-700 rounded-xl text-sm">
-                  Error al enviar. Inténtalo de nuevo.
+                  {submitError}
                 </div>
               )}
 

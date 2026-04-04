@@ -167,7 +167,8 @@ export default function PrivacyPolicy() {
                 <p className="text-gray-700 leading-relaxed">
                   Nuestra página web no utiliza cookies de seguimiento o análisis de terceros. Solo utilizamos cookies 
                   técnicas estrictamente necesarias para el funcionamiento del sitio web. Estas cookies no recopilan 
-                  información personal identificable.
+                  información personal identificable. Usamos Cloudflare Turnstile para evitar envíos automatizados. 
+                  Este captcha no viola tu privacidad porque no rastrea tu actividad personal ni recopila datos de uso para perfilado.
                 </p>
               </section>
 
