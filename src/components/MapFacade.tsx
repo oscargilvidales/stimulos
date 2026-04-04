@@ -52,16 +52,7 @@ export function MapFacade() {
                 <svg className="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
-                <div className="text-center">
-                    <p className="font-semibold text-gray-800 text-base">Ver mapa interactivo</p>
-                    <p className="text-gray-500 text-sm mt-1">Avda. Jane Bowles 17, Málaga</p>
-                </div>
-                <span className="text-xs text-gray-400 flex items-center gap-1">
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Haz clic para cargar Google Maps
-                </span>
+                <p className="font-semibold text-gray-800 text-base">Abrir mapa</p>
             </div>
         </button>
     );

@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Centro de psicología especializado en estimulación cognitiva y bienestar mental. Servicios profesionales de psicología en Málaga.",
   icons: {
     icon: "/Stimulo.png",
+    shortcut: "/Stimulo.png",
+    apple: "/Stimulo.png",
   },
 };
 
